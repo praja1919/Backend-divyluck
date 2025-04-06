@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.color-animation {
+  animation: bgchange 10s ease infinite;
+  background: #fdfaea; /* fallback */
+  transition: background 2s ease-in-out;
+}
+
+@keyframes bgchange {
+  0% {
+    background: #f9f5e0;
+  }
+}
