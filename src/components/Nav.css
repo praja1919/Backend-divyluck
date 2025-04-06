@@ -30,16 +30,19 @@
     color: #000;
     z-index: 3;
     transition: all 1.5s ease;
+    color: white;
+    
   }
   
   /* After animation */
   .move-top {
-    top: -10vh;
+    top: 2vh;
     left: 50%;
     transform: translateX(-50%);
     font-size: 47px;
     letter-spacing: 3px;
     padding-bottom: 8px;
+    color: white;
   }
   
   .nav-link {
@@ -242,3 +245,19 @@
   background: #d4af37;
   color: #fff;
 }
+
+.quote-container {
+    max-width: 800px;
+    margin: 100px auto; /* Centers the quote and adds space from top and bottom */
+    padding: 5 80px; /* Space from screen edges */
+    text-align: center;
+  }
+  
+  .quote-text {
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.8;
+    font-family:'Cormorant Garamond', serif; /* Or your preferred aesthetic font */
+    color: #222; /* You can tweak the shade to match theme */
+  }
+  
