@@ -19,17 +19,32 @@
           <>
             {/* Top Hero Section */}
             <div
-              className="hero-background"
-              style={{
-                backgroundImage: `url('/pho1.jpeg')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                width: "100%",
-                height: "100vh",
-                position: "relative",
-              }}
-            >
-              <div className="overlay"></div>
+        className="hero-background"
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100vh",
+          overflow: "hidden",
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        >
+          <source src="/vedio.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
               <div className={`brand-name ${animate ? "move-top" : ""}`}>
                 DIVYLUCK..
@@ -52,21 +67,21 @@
                   <Navbar.Toggle aria-controls="navbarScroll" />
                   <Navbar.Collapse id="navbarScroll">
                     <Nav className="mx-auto my-2 my-lg-0 gap-4 text-dark nav-frame" navbarScroll>
-                      <Link to="/services" className="nav-link custom-link">Services</Link>
+                      <Link to="/home" className="nav-link custom-link">Home</Link>
                       <Link to="/shringar" className="nav-link custom-link">Shringar Shilpi</Link>
                       <Link to="/vastrakosh" className="nav-link custom-link">Vastra Kosh</Link>
                       <Link to="/resources" className="nav-link custom-link">Resources</Link>
                       <Link to="/contact" className="nav-link custom-link">Contact</Link>
                     </Nav>
 
-                    <div className="d-flex gap-3">
+                    {/* <div className="d-flex gap-3">
                       <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                         <FaInstagram style={{ fontSize: "20px", color: "black" }} />
                       </a>
                       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                         <FaFacebookF style={{ fontSize: "20px", color: "black" }} />
                       </a>
-                    </div>
+                    </div> */}
                   </Navbar.Collapse>
                 </Container>
               </Navbar>
@@ -231,6 +246,12 @@
     </div>
   </div>
 </div>
+<div className="quote-container">
+  <p className="quote-text">
+    “Crowded narrow lanes with balconies jutting out of beautiful old mansions and homes, jostling for space in North Calcutta. So rich in its nonchalance, between the clamour of grandeur and decay. It’s almost spiritual, the neglect of luxury and the casual existence of glamour. It makes Calcutta unforgettable.”
+  </p>
+</div>
+
 
 
 
