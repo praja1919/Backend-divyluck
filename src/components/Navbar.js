@@ -32,7 +32,7 @@
               <div className="overlay"></div>
 
               <div className={`brand-name ${animate ? "move-top" : ""}`}>
-                DIVYLUCK..
+                DIVYLUCK
               </div>
 
               <Navbar
