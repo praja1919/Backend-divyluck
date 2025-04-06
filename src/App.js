@@ -1,13 +1,23 @@
-import './App.css';
-import Navbar from './components/Navbar'
-import EmailPopup from "./components/EmailPopup";
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Shringar from './components/Shringar';
+import VastraKosh from './components/VastraKosh';
+import Resources from './components/Resources';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
+
 function App() {
   return (
-  <>
-  <Navbar/>
-  <EmailPopup></EmailPopup>
-  < Footer></Footer>
+    <>
+      <Routes>
+        <Route path="/" element={<Navbar />} />
+        <Route path="/shringar" element={<Shringar />} />
+        <Route path="/vastrakosh" element={<VastraKosh />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
+      <Footer />
     </>
   );
 }
