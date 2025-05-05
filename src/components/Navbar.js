@@ -1,6 +1,6 @@
       import React, { useEffect, useState } from "react";
       import { Container, Nav, Navbar, Button } from "react-bootstrap";
-      import { FaInstagram, FaFacebookF } from "react-icons/fa";
+      //import { FaInstagram, FaFacebookF } from "react-icons/fa";
       import { Link } from "react-router-dom";
       import "bootstrap/dist/css/bootstrap.min.css";
       import "./Nav.css";
@@ -68,8 +68,8 @@
                   <Navbar.Collapse id="navbarScroll">
                     <Nav className="mx-auto my-2 my-lg-0 gap-4 text-dark nav-frame" navbarScroll>
                       <Link to="/home" className="nav-link custom-link">Home</Link>
-                      <Link to="/shringar" className="nav-link custom-link">Shringar Shilpi</Link>
-                      <Link to="/vastrakosh" className="nav-link custom-link">Vastra Kosh</Link>
+                      <Link to="/fashion" className="nav-link custom-link">Shringar Shilpi</Link>
+                      <Link to="/etheniccards" className="nav-link custom-link">Vastra Kosh</Link>
                       <Link to="/resources" className="nav-link custom-link">Resources</Link>
                       <Link to="/contact" className="nav-link custom-link">Contact</Link>
                     </Nav>
@@ -226,17 +226,20 @@
   <div className="horizontal-line"></div>
 </div>
 
-
 <div className="sabyasachi-card-container">
+  {/* First Card */}
   <div className="sabyasachi-card">
     <img src="/sew.jpg" alt="Craft Item 1" className="card-img" />
     <div className="card-overlay">
       <h2>Regal Drapes</h2>
       <p>Handwoven elegance with stories in every thread.</p>
-      <button className="view-button">View</button>
+      <Link to="/tailor">
+        <button className="view-button">View</button>
+      </Link>
     </div>
   </div>
 
+  {/* Second Card */}
   <div className="sabyasachi-card">
     <img src="/fab.jpg" alt="Craft Item 2" className="card-img" />
     <div className="card-overlay">
