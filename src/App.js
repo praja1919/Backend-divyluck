@@ -1,21 +1,26 @@
-<<<<<<< HEAD
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Shringar from './components/Shringar';
-import VastraKosh from './components/VastraKosh';
-import Resources from './components/Resources';
-import Contact from './components/Contact';
+// import S from './components/Etheniccards';
+// import VastraKosh from './components/VastraKosh';
+// import Resources from './components/Resources';
+// import Contact from './components/Contact';
 import Footer from './components/Footer';
+//import Etheniccards from './components/Etheniccards';
+import Fashion from './components/Fashion';
+ import ExploreDesigners from './components/ExploreDesigner';
+import ExploreTailor from './components/ExploreTailor';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Navbar />} />
-        <Route path="/shringar" element={<Shringar />} />
-        <Route path="/vastrakosh" element={<VastraKosh />} />
+        <Route path="/fashion" element={<Fashion/>} />
+        <Route path="/ExploreDesigner" element={<ExploreDesigners />} />
+        <Route path="/ExploreTailor" element={<ExploreTailor />} />
+        {/* <Route path="/vastrakosh" element={<VastraKosh />} />
         <Route path="/resources" element={<Resources />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} /> */}
       </Routes>
 
       <Footer />
@@ -24,33 +29,3 @@ function App() {
 }
 
 export default App;
-=======
-import { Routes, Route } from 'react-router-dom';
- import Navbar from './components/Navbar';
- import Fashion from './components/Fashion';
- import EmailPopup from './components/EmailPopup';
- //import Tailors from './components/Tailor';
- import  Etheniccards   from './components/Etheniccards.js';
-//  import Resources from './components/Resources';
-//  import Contact from './components/Contact';
- import Footer from './components/Footer';
- 
- function App() {
-   return (
-     <>
-       <Routes>
-         <Route path="/" element={<Navbar />} />
-         <Route path="/fashion" element={<Fashion />} />
-          <Route path="/Etheniccards" element={<Etheniccards/> }/> 
-        {/* //  <Route path="/resources" element={<Resources />} />
-        //  <Route path="/contact" element={<Contact />} />  */}
-       </Routes>
- 
-       <EmailPopup></EmailPopup>
-       <Footer />
-     </>
-   );
- }
- 
- export default App;
->>>>>>> 1d7fb38 (Initial commit)
