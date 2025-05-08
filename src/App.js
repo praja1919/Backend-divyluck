@@ -11,12 +11,15 @@ import EmailPopup from './components/EmailPopup';
 import Fashion from './components/Fashion';
  import ExploreDesigners from './components/ExploreDesigner';
 import ExploreTailor from './components/ExploreTailor';
+import ShopRegistration from './components/ShopRegistration';
 
 function App() {
   return (
     <>
     <EmailPopup></EmailPopup>
- 
+ <ShopRegistration>
+  
+ </ShopRegistration>
      
            <Routes>
         <Route path="/" element={<Navbar />} />
