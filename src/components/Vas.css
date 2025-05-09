@@ -1,0 +1,127 @@
+.vastrakosh-page {
+    background: #fefcf9;
+    font-family: 'Playfair Display', serif;
+  }
+  
+ 
+  .fabric-card {
+    border: none;
+    transition: transform 0.3s ease;
+    background: #fff8f0;
+    border-radius: 12px;
+  }
+  
+  .fabric-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .fabric-img {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .fabric-name {
+    font-size: 16px;
+    color: #5b4636;
+    margin-top: 8px;
+  }
+  
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    color: #3e2f1c;
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  .vastrakosh-banner {
+    background-color: #f5efe6;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .banner-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: #3e2f1c;
+  }
+  
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #3e2f1c;
+    margin-bottom: 30px;
+  }
+  
+  .fabric-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .fabric-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .fabric-img {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  
+  .fabric-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #5c4b3b;
+  }
+
+  .vastrakosh-page {
+    background-color: #fdfaf6;
+    min-height: 100vh;
+  }
+  
+  /* Banner Styling with Landscape Image */
+  /* .vastrakosh-banner {
+    background-image: url('../../public/images/landscape-banner.jpg');    
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  } */
+  
+  /* Animated VastraKosh Text */
+ 
+  
+  /* Keyframes for animation */
+  @keyframes fadeInZoom {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Optional card styling (if not already there) */
+  .fabric-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .fabric-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .fabric-img {
+    height: 300px;
+    width:500px;
+    object-fit: cover;
+  }
+ 
