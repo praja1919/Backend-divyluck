@@ -39,7 +39,7 @@ const Roll = () => {
           } else if (selectedRole === "tailor") {
             navigate("/tailorregistration", { state: { email, role: selectedRole } });
           } else {
-            navigate("/user-dashboard", { state: { email, role: selectedRole } });
+            navigate("/userregistration", { state: { email, role: selectedRole } });
           }
         } else {
           alert(data.message || "Something went wrong!");
