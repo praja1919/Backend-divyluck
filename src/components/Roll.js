@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, ScissorsSquare, Store } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Roll.css";
 
 const roles = [
@@ -12,14 +12,15 @@ const roles = [
 
 const Roll = () => {
   const location = useLocation();
-  const email = location.state?.email || "No Email Found";  // Get email from previous route state
-  const selectedRoleFromState = location.state?.selectedRole;  // Get selected role from state passed
-
+  const navigate = useNavigate();
+  const email = location.state?.email || "No Email Found";
+  const selectedRoleFromState = location.state?.selectedRole;
   const [selectedRole, setSelectedRole] = useState(selectedRoleFromState || null);
 
   const handleConfirm = async () => {
     if (selectedRole) {
       try {
+        // Send the selected role and email to the backend for registration
         const response = await fetch(`http://localhost:5000/api/register/${selectedRole}`, {
           method: "POST",
           headers: {
@@ -31,7 +32,15 @@ const Roll = () => {
         const data = await response.json();
         if (response.ok) {
           alert(`Successfully registered as ${selectedRole}`);
-          // Optionally redirect to dashboard here
+
+          // Redirect based on the selected role
+          if (selectedRole === "shopkeeper") {
+            navigate("/shopregistration", { state: { email, role: selectedRole } });
+          } else if (selectedRole === "tailor") {
+            navigate("/tailorregistration", { state: { email, role: selectedRole } });
+          } else {
+            navigate("/user-dashboard", { state: { email, role: selectedRole } });
+          }
         } else {
           alert(data.message || "Something went wrong!");
         }
