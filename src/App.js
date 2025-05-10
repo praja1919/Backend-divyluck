@@ -11,6 +11,7 @@ import ExploreTailor from './components/ExploreTailor';
 import ShopRegistration from './components/ShopRegistration';
 import Navbar from './components/Navbar'; // Home page navbar
 import TailorRegistration from './components/Tailorregistration';
+import UserRegistration from './components/userRegistration';
 
 function App() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shopregistration" element={<ShopRegistration />} />
          <Route path="/tailorregistration" element={<TailorRegistration />} />
+          <Route path="/userRegistration" element={<UserRegistration/>} />
         {/* Add similar routes for tailor and user registration if needed */}
       </Routes>
 
