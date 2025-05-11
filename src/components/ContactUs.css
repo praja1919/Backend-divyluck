@@ -1,0 +1,467 @@
+.contact-wrapper {
+    background: #fdf9f4; /* light aesthetic shade */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .left-box {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding-right: 30px;
+  }
+  
+  .right-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: -50px; /* adjust based on how much space you left */
+  }
+  .right-heading h3 {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    color: #333;
+    letter-spacing: 1px;
+  }
+  
+  .contact-image {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  
+  .brand-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3a2e2a;
+  }
+  
+  .brand-subtext {
+    font-size: 1.1rem;
+    color: #5c4c47;
+    margin-top: 10px;
+  }
+  
+  .contact-wrapper {
+    background-color: #f4f0ec;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .contact-container {
+    width: 1200px;
+  }
+
+  .arched-card {
+    background: #fff;
+    border: 5px solid #ccc;
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+    padding: 50px 150px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+  }
+  .sparkle {
+    position: absolute;
+    top: -25px; /* moves it above the arc */
+    right: 30px; /* positions it near the right arc */
+    font-size: 24px;
+    color: #000;
+  }
+  
+  .contact-logo {
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+    color: #6b4c3b;
+    margin-bottom: 10px;
+  }
+  
+  .contact-title {
+    font-size: 36px;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+    color: #3a2e2a;
+  }
+  
+  .contact-info div {
+    display: flex;
+    align-items: center;
+    margin: 14px 0;
+    font-size: 17px;
+    font-family: 'Georgia', serif;
+    color: #3a2e2a;
+  }
+  
+  .contact-info .icon {
+    margin-right: 15px;
+    font-size: 18px;
+    color: #3a2e2a;
+    width: 24px;
+    text-align: center;
+  }
+  
+  .footer-text {
+    margin-top: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    font-family: 'Georgia', serif;
+    color: #5c4c47;
+  }
+
+  @media (max-width: 768px) {
+    .arched-card {
+      border-top-left-radius: 80px;
+      border-top-right-radius: 80px;
+      padding: 30px 20px;
+    }
+  
+    .contact-title {
+      font-size: 24px;
+    }
+  
+    .contact-info div {
+      font-size: 14px;
+    }
+}
+
+/* .query-help-section {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .query-help-section select {
+    position: relative;
+    z-index: 20;
+  } */
+  
+
+  
+  @media (max-width: 768px) {
+    .contact-wrapper {
+      flex-direction: column;
+      padding: 20px 10px;
+      height: auto;
+    }
+  
+    .left-box, .right-box {
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+  
+    .arched-card {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
+      padding: 30px 20px;
+    }
+  
+    .query-help-section {
+      padding: 20px 15px;
+      margin-top: 50px;
+     
+    }
+  
+    .query-help-section select {
+      width: 100%;
+      max-width: 100%;
+      appearance: none;
+      background-position: right 10px center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .query-help-section h2 {
+    font-family: 'Patrick Hand', cursive;
+    font-weight: 700; /* Ensures bold */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  
+  .query-help-section select {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    border: 1.5px solid #000;
+    border-radius: 6px;
+    background-color: #f9f6f3;
+    color: #000;
+    appearance: none;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* .left-section{
+    text:15px;
+  } */
+
+  .left-section {
+    border-right: 3px solid #000000;
+    padding-right: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .quick-support-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+  }
+  
+  .support-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .category {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .category-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .category:hover .category-title {
+    color: #000;
+    border-bottom-color: #ccc;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .left-section {
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 3px solid #000000;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .quick-support-heading {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    
+    .category-title {
+      font-size: 14px;
+    }
+  }
+  .right-section {
+    padding-left: 30px;
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .left-section {
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 3px solid #000000;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .right-section {
+      padding-left: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .left-section, .right-section {
+      border-right: none;
+    }
+  }
+
+  /* FAQ Section Styles */
+.faq-container {
+    margin-top: 20px;
+  }
+  
+  .faq-item {
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  .faq-question:hover {
+    background-color: #e9ecef;
+  }
+  
+  .faq-question svg {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-item.active .faq-question svg {
+    transform: rotate(180deg);
+  }
+  
+  .faq-answer {
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #eee;
+  }
+  
+  .faq-answer p {
+    margin: 0;
+    color: #555;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .faq-question {
+      padding: 12px;
+      font-size: 15px;
+    }
+    
+    .faq-answer {
+      padding: 12px;
+    }
+  }
+  
+  .category-icon {
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  
+  .category-title {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .category-icon {
+      font-size: 16px;
+      margin-right: 8px;
+    }
+    
+    .category-title {
+      font-size: 14px;
+      padding: 10px 0;
+    }
+  }
+  /* Contact Form Styles */
+.contact-form {
+    margin: 25px 0;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #333;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .form-label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  .form-input:focus ~ .form-label,
+  .form-input:valid ~ .form-label {
+    top: -15px;
+    left: 0;
+    color: #6b4c3b;
+    font-size: 14px;
+  }
+  
+  .form-input:focus {
+    border-bottom: 1px solid #6b4c3b;
+  }
+  
+  /* Adjust arched card padding to accommodate new form */
+  .arched-card {
+    /* Keep your existing styles */
+    padding: 50px 150px 30px; /* Reduced bottom padding to fit content */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .contact-form {
+      margin: 15px 0;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-input {
+      font-size: 14px;
+    }
+    
+    .form-label {
+      font-size: 14px;
+    }
+    
+    .arched-card {
+      padding: 30px 20px;
+    }
+  }
