@@ -13,6 +13,7 @@ import Navbar from './components/Navbar'; // Home page navbar
 import TailorRegistration from './components/Tailorregistration';
 import UserRegistration from './components/userRegistration';
 import HeroSection from './components/Herosection';
+import AllDesigner from './components/Alldesigner';
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/herosection" element={<HeroSection />} />
         <Route path="/ExploreDesigner" element={<ExploreDesigners />} />
         <Route path="/ExploreTailor" element={<ExploreTailor />} />
+        <Route path="/Alldesigner" element={<AllDesigner />} />
         <Route path="/Roll" element={<Roll />} />
         <Route path="/vastrakosh" element={<VastraKosh />} />
         <Route path="/contact" element={<Contact />} />

@@ -17,7 +17,7 @@ const TailorRegistration = () => {
     city: '',
     location: '',
     pricingModel: '',
-    portfolioImages: '', // JSON array as string
+    portfolioImages: [], // Array to hold portfolio image URLs or files
     profilePicture: '',
   });
 
@@ -25,7 +25,13 @@ const TailorRegistration = () => {
   const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handlePortfolioImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setFormData({ ...formData, portfolioImages: files });
   };
 
   const handleSubmit = async (e) => {
@@ -37,9 +43,12 @@ const TailorRegistration = () => {
       return;
     }
 
-    try {
-      const parsedPortfolio = JSON.parse(formData.portfolioImages); // Parse image URLs
+    // Convert file list to URLs (if files are selected) or leave it as is
+    let parsedPortfolio = formData.portfolioImages.map((file) =>
+      file instanceof File ? URL.createObjectURL(file) : file
+    );
 
+    try {
       const response = await axios.post('http://localhost:5000/api/tailors/register', {
         ...formData,
         portfolioImages: parsedPortfolio,
@@ -62,13 +71,13 @@ const TailorRegistration = () => {
           city: '',
           location: '',
           pricingModel: '',
-          portfolioImages: '',
+          portfolioImages: [],
           profilePicture: '',
         });
       }
     } catch (err) {
       console.error('Registration error:', err);
-      setError(err.response?.data?.message || 'Something went wrong!');
+      setError(err.response?.data?.error || 'Something went wrong!');
       setSuccess('');
     }
   };
@@ -80,7 +89,7 @@ const TailorRegistration = () => {
       {success && <div className="success">{success}</div>}
 
       <form onSubmit={handleSubmit}>
-        {[
+        {[ 
           { label: 'Name', name: 'name' },
           { label: 'Gender', name: 'gender' },
           { label: 'Phone', name: 'phone' },
@@ -108,15 +117,25 @@ const TailorRegistration = () => {
           </div>
         ))}
 
+        {/* Portfolio Images Section */}
         <div className="form-group">
-          <label>Portfolio Images (in JSON array format)</label>
-          <textarea
+          <label>Portfolio Images (Select multiple files or enter URLs)</label>
+          <input
+            type="file"
             name="portfolioImages"
-            value={formData.portfolioImages}
-            onChange={handleChange}
-            placeholder={`Example:\n["image1.jpg", "image2.jpg"]`}
-            required
-            rows="4"
+            accept="image/*"
+            multiple
+            onChange={handlePortfolioImageChange}
+          />
+          <p>Or enter URLs (separate with commas):</p>
+          <input
+            type="text"
+            name="portfolioImagesUrls"
+            placeholder="Enter image URLs, separated by commas"
+            onChange={(e) => {
+              const urls = e.target.value.split(',').map(url => url.trim());
+              setFormData({ ...formData, portfolioImages: urls });
+            }}
           />
         </div>
 
