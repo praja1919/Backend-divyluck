@@ -6,6 +6,8 @@ import Resources from "./components/Resources";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Newnav from "./components/Newnav";
+import TailorRegistration from './components/Tailorregistration';
+
 
 
 function App() {
