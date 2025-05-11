@@ -417,3 +417,63 @@ html, body {
   transform: scale(1.08);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
+
+
+.content-right {
+  width: 50%; /* Adjust this value to make it smaller or larger */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px; /* Optional: add some padding */
+}
+
+.mens-card-wrapper {
+  max-width: 100%; /* Ensure the wrapper takes the full width of content-right */
+  margin: 0 auto;
+}
+
+.mens-card {
+  width: 100%; /* Ensure the card takes the full width of the wrapper */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.mens-img {
+  width: 100%;
+  height: auto;
+}
+
+.mens-text-section {
+  padding: 10px;
+}
+
+.mens-heading {
+  font-size: 3em; /* Increased font size for the first heading */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* Pure white color */
+  margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.mens-quote {
+  font-size: 1em; /* Increased font size for the quote */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* White color for the quote text */
+  margin-bottom: 25px; /* Increased margin for spacing */
+}
+
+.mens-sub-quote {
+  font-size: 1.5em; /* Larger font size for the sub-quote */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* White color for the sub-quote */
+  margin-bottom: 15px; /* Added margin for spacing */
+}
+
+.explore-btn {
+  padding: 15px 30px; /* Larger padding for the button */
+  font-size: 1.5em; /* Increased font size for the button */
+  font-weight: bold; /* Bold text */
+  cursor: pointer;
+  background-color: #000; /* Optional: black background for contrast */
+  color: #fff; /* White text for the button */
+  border: none;
+  border-radius: 5px;
+}
