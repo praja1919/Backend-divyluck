@@ -1,0 +1,55 @@
+.tailors-container {
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+  }
+  
+  .tailors-heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .tailors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .tailor-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .tailor-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .tailor-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .tailor-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+  }
+  
+  .tailor-place {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
