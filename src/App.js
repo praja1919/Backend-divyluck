@@ -12,6 +12,7 @@ import ShopRegistration from './components/ShopRegistration';
 import Navbar from './components/Navbar'; // Home page navbar
 import TailorRegistration from './components/Tailorregistration';
 import UserRegistration from './components/userRegistration';
+import HeroSection from './components/Herosection';
 
 function App() {
   const location = useLocation();
@@ -26,7 +27,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Fashion />} /> {/* Assuming Fashion is your homepage */}
-        <Route path="/fashion" element={<Fashion />} />
+        <Route path="/herosection" element={<HeroSection />} />
         <Route path="/ExploreDesigner" element={<ExploreDesigners />} />
         <Route path="/ExploreTailor" element={<ExploreTailor />} />
         <Route path="/Roll" element={<Roll />} />
