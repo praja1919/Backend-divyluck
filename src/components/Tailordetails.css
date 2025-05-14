@@ -1,0 +1,108 @@
+.tailor-details-container {
+  width: 60%; /* Adjust to make it narrower */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+  text-align: center; /* Center text */
+  margin-top: 50px; /* Added space from top */
+}
+
+.tailor-info {
+  margin-bottom: 30px;
+}
+
+.tailor-info h1 {
+  font-size: 28px; /* Slightly smaller for balance */
+  margin-bottom: 10px;
+  color: #333; /* Dark text for better readability */
+}
+
+.tailor-info p {
+  font-size: 16px;
+  color: #555; /* Lighter text color for better contrast */
+}
+
+.image-upload {
+  margin-bottom: 30px;
+}
+
+.image-upload input,
+.image-upload select,
+.image-upload button {
+  margin-bottom: 15px;
+  width: 100%; /* Make inputs and button span the full width of the container */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners for inputs */
+  border: 1px solid #ccc; /* Soft border for inputs */
+}
+
+.image-upload input[type="file"] {
+  padding: 5px;
+}
+
+.image-upload select {
+  background-color: #fafafa; /* Light background for dropdown */
+}
+
+.image-upload button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Slightly larger font for the button */
+}
+
+.image-upload button:hover {
+  background-color: #45a049;
+}
+
+.portfolio-display h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.image-box {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners for image boxes */
+}
+
+.portfolio-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 5px; /* Rounded corners for images */
+}
+
+.portfolio-image:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease; /* Smooth hover effect */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .tailor-details-container {
+    width: 90%; /* Make the container wider on smaller screens */
+  }
+
+  .image-grid {
+    grid-template-columns: 1fr 1fr; /* Two columns on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .image-grid {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+  }
+}
