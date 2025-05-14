@@ -97,7 +97,7 @@ const Newnav = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/fashion">
+              <NavLink className="nav-link" to="/herosection">
                 Shringar Shilpi
               </NavLink>
             </li>

@@ -1,8 +1,12 @@
+// TailorRegistration.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import './tailorRej.css'; // Optional: your CSS file
+import { useNavigate } from 'react-router-dom';
+import './tailorRej.css';
 
 const TailorRegistration = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
@@ -17,21 +21,22 @@ const TailorRegistration = () => {
     city: '',
     location: '',
     pricingModel: '',
-    portfolioImages: [], // Array to hold portfolio image URLs or files
+    portfolioImages: [],
     profilePicture: '',
   });
 
+  const [portfolioImageURLs, setPortfolioImageURLs] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handlePortfolioImageChange = (e) => {
     const files = Array.from(e.target.files);
-    setFormData({ ...formData, portfolioImages: files });
+    setFormData((prev) => ({ ...prev, portfolioImages: files }));
   };
 
   const handleSubmit = async (e) => {
@@ -43,20 +48,33 @@ const TailorRegistration = () => {
       return;
     }
 
-    // Convert file list to URLs (if files are selected) or leave it as is
-    let parsedPortfolio = formData.portfolioImages.map((file) =>
-      file instanceof File ? URL.createObjectURL(file) : file
-    );
+    // Combine file objects and image URLs
+    let combinedPortfolio = [...formData.portfolioImages];
+    if (portfolioImageURLs.trim()) {
+      const urlArray = portfolioImageURLs.split(',').map(url => url.trim()).filter(url => url);
+      combinedPortfolio = [...combinedPortfolio, ...urlArray];
+    }
+
+    const dataToSend = {
+      ...formData,
+      portfolioImages: combinedPortfolio,
+    };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/tailors/register', {
-        ...formData,
-        portfolioImages: parsedPortfolio,
-      });
+      const response = await axios.post('http://localhost:5000/api/tailors/register', dataToSend);
 
       if (response.status === 201) {
+        const tailorId = response.data._id || response.data.tailor?._id;
+
         setSuccess('Tailor registered successfully!');
         setError('');
+
+        // Navigate to tailor details
+        setTimeout(() => {
+          navigate(`/tailordetails/${tailorId}`);
+        }, 1000);
+
+        // Reset form
         setFormData({
           name: '',
           gender: '',
@@ -74,6 +92,7 @@ const TailorRegistration = () => {
           portfolioImages: [],
           profilePicture: '',
         });
+        setPortfolioImageURLs('');
       }
     } catch (err) {
       console.error('Registration error:', err);
@@ -89,7 +108,7 @@ const TailorRegistration = () => {
       {success && <div className="success">{success}</div>}
 
       <form onSubmit={handleSubmit}>
-        {[ 
+        {[
           { label: 'Name', name: 'name' },
           { label: 'Gender', name: 'gender' },
           { label: 'Phone', name: 'phone' },
@@ -117,25 +136,23 @@ const TailorRegistration = () => {
           </div>
         ))}
 
-        {/* Portfolio Images Section */}
         <div className="form-group">
-          <label>Portfolio Images (Select multiple files or enter URLs)</label>
+          <label>Portfolio Images (upload)</label>
           <input
             type="file"
-            name="portfolioImages"
             accept="image/*"
             multiple
             onChange={handlePortfolioImageChange}
           />
-          <p>Or enter URLs (separate with commas):</p>
+        </div>
+
+        <div className="form-group">
+          <label>Portfolio Image URLs (comma-separated)</label>
           <input
             type="text"
-            name="portfolioImagesUrls"
-            placeholder="Enter image URLs, separated by commas"
-            onChange={(e) => {
-              const urls = e.target.value.split(',').map(url => url.trim());
-              setFormData({ ...formData, portfolioImages: urls });
-            }}
+            value={portfolioImageURLs}
+            onChange={(e) => setPortfolioImageURLs(e.target.value)}
+            placeholder="https://..., https://..."
           />
         </div>
 
