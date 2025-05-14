@@ -1,165 +1,276 @@
-.vastrakosh-page {
-    background: #fefcf9;
-    font-family: 'Playfair Display', serif;
-  }
-  
- 
-  .fabric-card {
-    border: none;
-    transition: transform 0.3s ease;
-    background: #fff8f0;
-    border-radius: 12px;
-  }
-  
-  .fabric-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .fabric-img {
-    height: 250px;
-    object-fit: cover;
-    border-radius: 12px 12px 0 0;
-  }
-  
-  .fabric-name {
-    font-size: 16px;
-    color: #5b4636;
-    margin-top: 8px;
-  }
-  
-  .section-heading {
-    font-family: 'Playfair Display', serif;
-    color: #3e2f1c;
-    font-size: 22px;
-    margin-bottom: 30px;
-  }
-  .vastrakosh-banner {
-    background-color: #f5efe6;
-    padding: 60px 20px;
-    text-align: center;
-  }
-  
-  .banner-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    color: #3e2f1c;
-  }
-  
-  .section-heading {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: #3e2f1c;
-    margin-bottom: 30px;
-  }
-  
-  .fabric-card {
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-  
-  .fabric-card:hover {
-    transform: scale(1.03);
-  }
-  
-  .fabric-img {
-    height: 250px;
-    object-fit: cover;
-    border-radius: 0;
-  }
-  
-  .fabric-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    color: #5c4b3b;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
-  .vastrakosh-page {
-    background-color: #fdfaf6;
-    min-height: 100vh;
-  }
-  
-  /* Banner Styling with Landscape Image */
-  /* .vastrakosh-banner {
-    background-image: url('../../public/images/landscape-banner.jpg');    
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  } */
-  
-  /* Animated VastraKosh Text */
- 
-  
-  /* Keyframes for animation */
-  @keyframes fadeInZoom {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  /* Optional card styling (if not already there) */
-  .fabric-card {
-    border: none !important;
-    border-radius: 12px !important;
-    transition: transform 0.3s, box-shadow 0.3s !important;
-    overflow: hidden;
-  }
-  
-  .fabric-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-  }
-  
-  .fabric-img {
-    object-fit: cover;
-    transition: transform 0.5s !important;
-  }
-  
-  .fabric-card:hover .fabric-img {
-    transform: scale(1.03) !important;
-  }
-  
-  .fabric-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    color: #555;
-    margin-top: 8px;
-  }
-
-  /* ===== Taller Sidebar ===== */
-/* Trendy Sidebar */
-.sidebar-filter {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Soft shadow */
-  border: 1px solid #f0f0f0; /* Delicate border */
+.video-container {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  overflow: hidden;
 }
 
-.sidebar-title {
-  font-family: 'Playfair Display', serif; /* Luxury font */
-  color: #333;
-  font-size: 1.2rem;
-  padding: 16px 20px;
-  border-bottom: 1px solid #eee;
+.card-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.accordion-button {
+/* Keep all your existing card styles */
+.aesthetic-card {
+  border: none !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  /* ... rest of your card styles */
+}
+.quote-section {
+  background-color: #f9f7f4;
+  color: #2b2b2b;
+  font-family: 'Georgia', serif;
+  width: 100%;
+  margin: 0;
+  padding: 5vh 10vw; /* padding for breathing space, adjust as needed */
+  border-radius: 0; /* optional: remove rounding if you want flush edges */
+  margin-top: 15vh;
+}
+
+.quote-text {
+  font-size: 1.6rem;
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.quote-signature {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: #e0a070;
+}
+
+.rectangle-video-container {
+  width: 600px; /* Set a maximum width for the video container */
+ height: 900px;
+}
+
+.rectangle-video-container video {
+  border-radius: 8px; /* Add rounded corners if desired */
+  height: 900px;
+}
+
+/* Minimal card transition */
+/* .minimal-video-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+} */
+
+.minimal-video-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.minimal-video-card:hover {
+  transform: scale(1.01);
+}
+
+.minimal-video-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.explore-button {
+  /* Positioning */
+  position: absolute;
+  bottom: 40px;
+  left: 40%;
+  /* transform: translateX(-50%);
+  z-index: 10; */
+  
+  /* Dimensions */
+  width: 180px;
+  /* padding: 12px 24px; */
+  
+  /* Typography */
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
   font-weight: 600;
-  color: #222 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+  /* Colors */
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  
+  /* Borders */
+  border-radius: 50px;
+  
+  /* Effects */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.accordion-button:not(.collapsed) {
-  background: #fff9f9 !important; /* Blush pink when open */
+.explore-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
+.explore-button:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* Glow effect on hover */
+.explore-button:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50px;
+  background: radial-gradient(circle at center, 
+             rgba(12, 56, 1, 0.8) 0%, 
+             rgba(0, 0, 0, 0.679) 70%);
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.6; }
+}
+
+/* Arrow icon */
+.explore-button::after {
+  content: '→';
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.explore-button:hover::after {
+  transform: translateX(4px);
+}
+.arched-card1 {
+  background: #f5f5f5;
+  border: 2px solid #ccc;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 05px;
+}
+
+.vas-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.vas-title {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  margin-top: 20px;
+}
+
+.vas-description {
+  font-size: 1rem;
+  color: #444;
+  font-family: 'Segoe UI', sans-serif;
+   margin-top: 20px;
+}
+.vas-description2 {
+  font-size: 1rem;
+  color: #444;
+  font-family: 'Segoe UI', sans-serif;
+   margin-top: 18px;
+}
+
+.video-card {
+  overflow: hidden;
+}
+
+.video-overlay {
+  width: 90%;
+  /* max-width: 600px; */
+  height: 999px;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  margin-top: 130px;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+
+.explore-btn {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+}
+
+.explore-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .video-heading {
+    font-size: 1.3rem;
+  }
+
+  .explore-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .video-overlay {
+    padding: 30px 15px;
+    width: 90%;
+  }
+}
+.vas-description3{
+ color: #fff;
+ font-family: 'Georgia', serif;
+ padding: 2px;
+  
+}
