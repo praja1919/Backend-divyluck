@@ -68,7 +68,7 @@
                     <Nav className="mx-auto my-2 my-lg-0 gap-4 text-dark nav-frame" navbarScroll>
                     <Link to="/" className="nav-link custom-link">Home</Link>
                       <Link to="/herosection" className="nav-link custom-link">Shringar Shilpi</Link>
-                      <Link to="/vastrakosh" className="nav-link custom-link">Vastra Kosh</Link>
+                      <Link to="/VastraKosh" className="nav-link custom-link">Vastra Kosh</Link>
                       <Link to="/resources" className="nav-link custom-link">Resources</Link>
                       <Link to="/contact" className="nav-link custom-link">Contact</Link>
                     </Nav>

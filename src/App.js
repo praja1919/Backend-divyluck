@@ -16,6 +16,8 @@ import HeroSection from './components/Herosection';
 import AllDesigner from './components/Alldesigner';
 import FabricCategoryPage from './components/FabricCategoryPage';
 import TailorDetails from './components/Tailordetails';
+
+
 function App() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -41,6 +43,8 @@ function App() {
           <Route path="/userRegistration" element={<UserRegistration/>} />
             <Route path="/fabric/:name" element={<FabricCategoryPage />} />
           <Route path="/tailordetails/:id" element={<TailorDetails/>} />
+                    <Route path="/vastrakosh" element={<VastraKosh/>} />
+          
 
              {/* 🔥 Just this added */}
         {/* Add similar routes for tailor and user registration if needed */}
