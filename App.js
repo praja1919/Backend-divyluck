@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Newnav from './components/Newnav'; // Use Newnav instead of Navbar
-import VastraKosh from './components/VastraKosh';
+//import VastraKosh from './components/VastraKosh';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import EmailPopup from './components/EmailPopup';
@@ -14,6 +14,7 @@ import TailorRegistration from './components/Tailorregistration';
 import UserRegistration from './components/userRegistration';
 import HeroSection from './components/Herosection';
 import AllDesigner from './components/Alldesigner';
+import VastraKosh from './src/components/VastraKosh';
 
 import FabricCategoryPage from './components/FabricCategoryPage';
 
@@ -36,11 +37,12 @@ function App() {
         <Route path="/ExploreTailor" element={<ExploreTailor />} />
         <Route path="/Alldesigner" element={<AllDesigner />} />
         <Route path="/Roll" element={<Roll />} />
-        <Route path="/vastrakosh" element={<VastraKosh />} />
+       {/* // <Route path="/VastraKosh" element={<VastraKosh />} /> */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/shopregistration" element={<ShopRegistration />} />
          <Route path="/tailorregistration" element={<TailorRegistration />} />
           <Route path="/userRegistration" element={<UserRegistration/>} />
+            <Route path="/VastraKosh.js" element={<VastraKosh/>} />
         {/* Add similar routes for tailor and user registration if needed */}
          <Route path="/fabric/:name" element={<FabricCategoryPage />} /> {/* 🔥 Just this added */}
       </Routes>
