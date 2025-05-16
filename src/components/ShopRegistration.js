@@ -26,47 +26,49 @@ const ShopRegistration = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+ const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        const {
-            shopName,
-            owner,
-            email,
-            password,
-            confirmPassword,
-            contact,
-            location,
-            businessLicense
-        } = formData;
+    const {
+        shopName,
+        owner,
+        email,
+        password,
+        confirmPassword,
+        contact,
+        location,
+        businessLicense
+    } = formData;
 
-        if (!shopName || !owner || !email || !password || !confirmPassword || !contact || !location || !businessLicense) {
-            setError('All fields are required.');
-            setSuccess('');
-            return;
+    if (!shopName || !owner || !email || !password || !confirmPassword || !contact || !location || !businessLicense) {
+        setError('All fields are required.');
+        setSuccess('');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        setError('Passwords do not match!');
+        setSuccess('');
+        return;
+    }
+
+    try {
+        const response = await axios.post('http://localhost:5000/api/shops/register', formData);
+
+        if (response.status === 201) {
+            const newShopId = response.data.shop._id; // Adjust based on your backend response structure
+            setSuccess('Shop registered successfully!');
+            setError('');
+            alert('Shop registered successfully!');
+            navigate(`/shopimages/${newShopId}`); // ✅ Redirect to shop images page
         }
+    } catch (err) {
+        console.error('Registration error:', err);
+        setError(err.response?.data?.message || 'Something went wrong!');
+        setSuccess('');
+    }
+};
 
-        if (password !== confirmPassword) {
-            setError('Passwords do not match!');
-            setSuccess('');
-            return;
-        }
-
-        try {
-            const response = await axios.post('http://localhost:5000/api/shops/register', formData);
-
-            if (response.status === 201) {
-                setSuccess('Shop registered successfully!');
-                setError('');
-                alert('Shop registered successfully!');
-                navigate('/shop/login');
-            }
-        } catch (err) {
-            console.error('Registration error:', err);
-            setError(err.response?.data?.message || 'Something went wrong!');
-            setSuccess('');
-        }
-    };
 
     return (
         <div className="shop-registration-form">

@@ -16,6 +16,7 @@ import HeroSection from './components/Herosection';
 import AllDesigner from './components/Alldesigner';
 import FabricCategoryPage from './components/FabricCategoryPage';
 import TailorDetails from './components/Tailordetails';
+import Shopimages from './components/Shopimages';
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
             <Route path="/fabric/:name" element={<FabricCategoryPage />} />
           <Route path="/tailordetails/:id" element={<TailorDetails/>} />
                     <Route path="/vastrakosh" element={<VastraKosh/>} />
+                  <Route path="/shopimages/:shopId" element={<Shopimages />} />
+
           
 
              {/* 🔥 Just this added */}
