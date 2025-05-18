@@ -1,4 +1,3 @@
-// TailorRegistration.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -21,11 +20,10 @@ const TailorRegistration = () => {
     city: '',
     location: '',
     pricingModel: '',
+    profilePicture: null,
     portfolioImages: [],
-    profilePicture: '',
   });
 
-  const [portfolioImageURLs, setPortfolioImageURLs] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -34,9 +32,12 @@ const TailorRegistration = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleProfilePictureChange = (e) => {
+    setFormData((prev) => ({ ...prev, profilePicture: e.target.files[0] }));
+  };
+
   const handlePortfolioImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setFormData((prev) => ({ ...prev, portfolioImages: files }));
+    setFormData((prev) => ({ ...prev, portfolioImages: Array.from(e.target.files) }));
   };
 
   const handleSubmit = async (e) => {
@@ -48,33 +49,34 @@ const TailorRegistration = () => {
       return;
     }
 
-    // Combine file objects and image URLs
-    let combinedPortfolio = [...formData.portfolioImages];
-    if (portfolioImageURLs.trim()) {
-      const urlArray = portfolioImageURLs.split(',').map(url => url.trim()).filter(url => url);
-      combinedPortfolio = [...combinedPortfolio, ...urlArray];
-    }
-
-    const dataToSend = {
-      ...formData,
-      portfolioImages: combinedPortfolio,
-    };
-
     try {
-      const response = await axios.post('http://localhost:5000/api/tailors/register', dataToSend);
+      const data = new FormData();
+
+      // Append all fields except files
+      for (const key in formData) {
+        if (key === 'profilePicture' && formData.profilePicture) {
+          data.append('profilePicture', formData.profilePicture);
+        } else if (key === 'portfolioImages' && formData.portfolioImages.length > 0) {
+          formData.portfolioImages.forEach((file) => {
+            data.append('portfolioImages', file);
+          });
+        } else if (key !== 'confirmPassword' && key !== 'profilePicture' && key !== 'portfolioImages') {
+          data.append(key, formData[key]);
+        }
+      }
+
+      const response = await axios.post('http://localhost:5000/api/tailors/register', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
       if (response.status === 201) {
-        const tailorId = response.data._id || response.data.tailor?._id;
-
         setSuccess('Tailor registered successfully!');
         setError('');
-
-        // Navigate to tailor details
+        // Navigate to tailor details page (if applicable)
         setTimeout(() => {
-          navigate(`/tailordetails/${tailorId}`);
+          navigate(`/tailordetails/${response.data._id}`);
         }, 1000);
 
-        // Reset form
         setFormData({
           name: '',
           gender: '',
@@ -89,13 +91,11 @@ const TailorRegistration = () => {
           city: '',
           location: '',
           pricingModel: '',
+          profilePicture: null,
           portfolioImages: [],
-          profilePicture: '',
         });
-        setPortfolioImageURLs('');
       }
     } catch (err) {
-      console.error('Registration error:', err);
       setError(err.response?.data?.error || 'Something went wrong!');
       setSuccess('');
     }
@@ -107,7 +107,7 @@ const TailorRegistration = () => {
       {error && <div className="error">{error}</div>}
       {success && <div className="success">{success}</div>}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         {[
           { label: 'Name', name: 'name' },
           { label: 'Gender', name: 'gender' },
@@ -122,7 +122,6 @@ const TailorRegistration = () => {
           { label: 'City', name: 'city' },
           { label: 'Location', name: 'location' },
           { label: 'Pricing Model', name: 'pricingModel' },
-         
         ].map(({ label, name, type = 'text' }) => (
           <div className="form-group" key={name}>
             <label>{label}</label>
@@ -136,9 +135,21 @@ const TailorRegistration = () => {
           </div>
         ))}
 
-  
+        <div className="form-group">
+          <label>Profile Picture</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleProfilePictureChange}
+            required
+          />
+        </div>
 
-        <button type="submit" className="submit-btn">Register Tailor</button>
+       
+
+        <button type="submit" className="submit-btn">
+          Register Tailor
+        </button>
       </form>
     </div>
   );
