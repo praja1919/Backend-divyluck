@@ -17,7 +17,7 @@ import AllDesigner from './components/Alldesigner';
 import FabricCategoryPage from './components/FabricCategoryPage';
 import TailorDetails from './components/Tailordetails';
 import Shopimages from './components/Shopimages';
-
+import TailorPortfolio from './components/TailorPortfolio';
 
 function App() {
   const location = useLocation();
@@ -46,7 +46,7 @@ function App() {
           <Route path="/tailordetails/:id" element={<TailorDetails/>} />
                     <Route path="/vastrakosh" element={<VastraKosh/>} />
                   <Route path="/shopimages/:shopId" element={<Shopimages />} />
-
+<Route path="/tailor/:id" element={<TailorPortfolio/>} />
           
 
              {/* 🔥 Just this added */}

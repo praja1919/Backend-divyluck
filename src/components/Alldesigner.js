@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './ExploreDesigner.css'; // Ensure your styles are in this file
+import { useNavigate } from 'react-router-dom'; // import useNavigate
+import './ExploreDesigner.css'; // Your styles
 
 function AllDesigner() {
   const [tailors, setTailors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
-    // Fetching all tailors (male & female) from the API
     axios
-      .get('http://localhost:5000/api/tailors') // Your backend API route here
+      .get('http://localhost:5000/api/tailors/')
       .then((response) => {
         setTailors(response.data);
         setLoading(false);
@@ -19,6 +20,10 @@ function AllDesigner() {
         setLoading(false);
       });
   }, []);
+
+  const handleExploreClick = (id) => {
+    navigate(`/tailor/${id}`);  // Navigate to TailorPortfolio with tailor id
+  };
 
   return (
     <div className="tailors-container">
@@ -43,7 +48,9 @@ function AllDesigner() {
               <p><strong>💰 Rate:</strong> {tailor.pricingModel || 'N/A'}</p>
               <p><strong>🧥 Specialty:</strong> {tailor.specialty || 'Custom stitching'}</p>
               <p><strong>📅 Experience:</strong> {tailor.experience}+ years</p>
-              <button className="explore-btn"><span>Explore</span></button>
+              <button className="explore-btn" onClick={() => handleExploreClick(tailor._id)}>
+                <span>Explore</span>
+              </button>
             </div>
           </div>
         ))
