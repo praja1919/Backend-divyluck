@@ -3,28 +3,32 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Taiimag.css";
 
-const ImageUploadForm = () => {
-  const { id: tailorId } = useParams(); // Get tailorId from URL
+const categories = ["Wedding Wear", "Party Wear", "Casual Wear"];
 
-  const [imagesData, setImagesData] = useState([
-    { images: [], caption: "", category: "" },
-  ]);
+const ImageUploadForm = () => {
+  const { id: tailorId } = useParams();
+  const [formData, setFormData] = useState(
+    categories.map(() => [{ image: null, caption: "" }])
+  );
   const [message, setMessage] = useState("");
 
-  // Handle input field changes (images, caption, category)
-  const handleChange = (index, field, value) => {
-    const updatedImages = [...imagesData];
-    updatedImages[index][field] = field === "images" ? Array.from(value) : value; // Convert FileList to array
-    setImagesData(updatedImages);
+  // Handle image and caption changes
+  const handleChange = (categoryIndex, imageIndex, field, value) => {
+    const updatedData = [...formData];
+    updatedData[categoryIndex][imageIndex][field] =
+      field === "image" ? value[0] : value;
+    setFormData(updatedData);
   };
 
-  // Add more image upload fields
-  const addImageField = () => {
-    setImagesData([...imagesData, { images: [], caption: "", category: "" }]);
+  // Add image field under a specific category
+  const addImageField = (categoryIndex) => {
+    const updatedData = [...formData];
+    updatedData[categoryIndex].push({ image: null, caption: "" });
+    setFormData(updatedData);
   };
 
-  // Handle uploading all images
-  const handleUploadAll = async (e) => {
+  // Handle form submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!tailorId) {
@@ -32,26 +36,33 @@ const ImageUploadForm = () => {
       return;
     }
 
-    // Create FormData object
-    const formData = new FormData();
+    const form = new FormData();
 
-    // Loop through imagesData to append images, captions, and categories
-    imagesData.forEach((data, index) => {
-      if (data.images.length > 0) {
-        data.images.forEach((image) => formData.append("images", image)); // Multiple images
-        formData.append(`caption_${index}`, data.caption); // Append caption
-        formData.append(`category_${index}`, data.category); // Append category
-      }
+    let index = 0;
+    formData.forEach((categoryImages, categoryIndex) => {
+      const category = categories[categoryIndex];
+
+      categoryImages.forEach((item) => {
+        if (item.image) {
+          form.append("images", item.image);
+          form.append(`caption_${index}`, item.caption);
+          form.append(`category_${index}`, category);
+          index++;
+        }
+      });
     });
 
     try {
-      // Send POST request with tailorId in URL
-      await axios.post(`http://localhost:5000/api/images/upload/${tailorId}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
+      await axios.post(
+        `http://localhost:5000/api/images/upload/${tailorId}`,
+        form,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       setMessage("Images uploaded successfully!");
-      setImagesData([{ images: [], caption: "", category: "" }]); // Reset the form data
+      // Reset form
+      setFormData(categories.map(() => [{ image: null, caption: "" }]));
     } catch (error) {
       console.error("Upload error:", error);
       setMessage("Failed to upload images.");
@@ -61,49 +72,45 @@ const ImageUploadForm = () => {
   return (
     <div className="form-container">
       <h2>Upload Portfolio Images</h2>
-      <form onSubmit={handleUploadAll}>
-        {imagesData.map((data, index) => (
-          <div key={index} className="image-field">
-            <h4>Image {index + 1}</h4>
-
-            <input
-              type="file"
-              onChange={(e) => handleChange(index, "images", e.target.files)}
-              multiple
-              required
-            />
-            <br />
-
-            <input
-              type="text"
-              placeholder="Caption"
-              value={data.caption}
-              onChange={(e) => handleChange(index, "caption", e.target.value)}
-              required
-            />
-            <br />
-
-            <select
-              value={data.category}
-              onChange={(e) => handleChange(index, "category", e.target.value)}
-              required
+      <form onSubmit={handleSubmit}>
+        {categories.map((category, categoryIndex) => (
+          <div key={categoryIndex} className="category-section">
+            <h3>{category}</h3>
+            {formData[categoryIndex].map((item, imageIndex) => (
+              <div key={imageIndex} className="image-field">
+                <label>Image {imageIndex + 1}</label>
+                <input
+                  type="file"
+                  onChange={(e) =>
+                    handleChange(categoryIndex, imageIndex, "image", e.target.files)
+                  }
+                  accept="image/*"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Enter caption"
+                  value={item.caption}
+                  onChange={(e) =>
+                    handleChange(categoryIndex, imageIndex, "caption", e.target.value)
+                  }
+                  required
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addImageField(categoryIndex)}
+              className="add-more-btn"
             >
-              <option value="">Select Category</option>
-              <option value="Casual Wear">Casual Wear</option>
-              <option value="Formal Wear">Formal Wear</option>
-              <option value="Evening Wear">Evening Wear</option>
-            </select>
+              + Add More to {category}
+            </button>
+            <hr />
           </div>
         ))}
 
-        <button type="button" onClick={addImageField} className="add-more-btn">
-          + Add More Images
-        </button>
-        <br />
-
-        <button type="submit" className="submit-btn">Upload Images</button>
+        <button type="submit" className="submit-btn">Upload All Images</button>
       </form>
-
       {message && <p>{message}</p>}
     </div>
   );

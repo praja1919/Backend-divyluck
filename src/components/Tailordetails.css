@@ -106,3 +106,45 @@
     grid-template-columns: 1fr; /* Single column on very small screens */
   }
 }
+
+
+.form-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 30px;
+  background: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-section {
+  margin-bottom: 30px;
+}
+
+.image-field {
+  margin: 10px 0;
+}
+
+.image-field input[type="file"],
+.image-field input[type="text"] {
+  display: block;
+  margin: 8px 0;
+  padding: 6px;
+  width: 100%;
+}
+
+.add-more-btn,
+.submit-btn {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-more-btn:hover,
+.submit-btn:hover {
+  background-color: #303f9f;
+}
