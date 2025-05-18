@@ -122,7 +122,7 @@ const TailorRegistration = () => {
           { label: 'City', name: 'city' },
           { label: 'Location', name: 'location' },
           { label: 'Pricing Model', name: 'pricingModel' },
-          { label: 'Profile Picture URL', name: 'profilePicture' },
+         
         ].map(({ label, name, type = 'text' }) => (
           <div className="form-group" key={name}>
             <label>{label}</label>
@@ -136,25 +136,7 @@ const TailorRegistration = () => {
           </div>
         ))}
 
-        <div className="form-group">
-          <label>Portfolio Images (upload)</label>
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handlePortfolioImageChange}
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Portfolio Image URLs (comma-separated)</label>
-          <input
-            type="text"
-            value={portfolioImageURLs}
-            onChange={(e) => setPortfolioImageURLs(e.target.value)}
-            placeholder="https://..., https://..."
-          />
-        </div>
+  
 
         <button type="submit" className="submit-btn">Register Tailor</button>
       </form>
