@@ -1,4 +1,3 @@
-// TailorRegistration.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -21,11 +20,8 @@ const TailorRegistration = () => {
     city: '',
     location: '',
     pricingModel: '',
-    portfolioImages: [],
-    profilePicture: '',
   });
 
-  const [portfolioImageURLs, setPortfolioImageURLs] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -34,47 +30,26 @@ const TailorRegistration = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePortfolioImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setFormData((prev) => ({ ...prev, portfolioImages: files }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match!');
-      setSuccess('');
       return;
     }
 
-    // Combine file objects and image URLs
-    let combinedPortfolio = [...formData.portfolioImages];
-    if (portfolioImageURLs.trim()) {
-      const urlArray = portfolioImageURLs.split(',').map(url => url.trim()).filter(url => url);
-      combinedPortfolio = [...combinedPortfolio, ...urlArray];
-    }
-
-    const dataToSend = {
-      ...formData,
-      portfolioImages: combinedPortfolio,
-    };
-
     try {
+      // Send data to backend (exclude confirmPassword if backend doesn't need it)
+      const { confirmPassword, ...dataToSend } = formData;
       const response = await axios.post('http://localhost:5000/api/tailors/register', dataToSend);
 
       if (response.status === 201) {
-        const tailorId = response.data._id || response.data.tailor?._id;
-
         setSuccess('Tailor registered successfully!');
         setError('');
 
-        // Navigate to tailor details
-        setTimeout(() => {
-          navigate(`/tailordetails/${tailorId}`);
-        }, 1000);
-
-        // Reset form
+        // Clear form
         setFormData({
           name: '',
           gender: '',
@@ -89,13 +64,19 @@ const TailorRegistration = () => {
           city: '',
           location: '',
           pricingModel: '',
-          portfolioImages: [],
-          profilePicture: '',
         });
-        setPortfolioImageURLs('');
+
+        // Get the tailor ID from response - assuming backend sends saved tailor in response.data.tailor or response.data
+        const tailorId = response.data._id || response.data.tailor?._id;
+
+        if (tailorId) {
+          // Navigate to tailor details page with ID
+          navigate(`/tailordetails/${tailorId}`);
+        } else {
+          setError('Tailor ID not returned by server.');
+        }
       }
     } catch (err) {
-      console.error('Registration error:', err);
       setError(err.response?.data?.error || 'Something went wrong!');
       setSuccess('');
     }
@@ -104,10 +85,11 @@ const TailorRegistration = () => {
   return (
     <div className="tailor-registration-form">
       <h2>Tailor Registration</h2>
+
       {error && <div className="error">{error}</div>}
       {success && <div className="success">{success}</div>}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         {[
           { label: 'Name', name: 'name' },
           { label: 'Gender', name: 'gender' },
@@ -117,28 +99,29 @@ const TailorRegistration = () => {
           { label: 'Confirm Password', name: 'confirmPassword', type: 'password' },
           { label: 'Shop Name', name: 'shopName' },
           { label: 'Tailor Type', name: 'tailorType' },
-          { label: 'Experience (Years)', name: 'experience', type: 'number' },
+          { label: 'Experience (Years)', name: 'experience', type: 'number', min: 0 },
           { label: 'Specialty', name: 'specialty' },
           { label: 'City', name: 'city' },
           { label: 'Location', name: 'location' },
           { label: 'Pricing Model', name: 'pricingModel' },
-         
-        ].map(({ label, name, type = 'text' }) => (
+        ].map(({ label, name, type = 'text', min }) => (
           <div className="form-group" key={name}>
-            <label>{label}</label>
+            <label htmlFor={name}>{label}</label>
             <input
+              id={name}
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
               required
+              min={min}
             />
           </div>
         ))}
 
-  
-
-        <button type="submit" className="submit-btn">Register Tailor</button>
+        <button type="submit" className="submit-btn">
+          Register Tailor
+        </button>
       </form>
     </div>
   );
