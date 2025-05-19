@@ -18,6 +18,8 @@ import FabricCategoryPage from './components/FabricCategoryPage';
 import TailorDetails from './components/Tailordetails';
 import Shopimages from './components/Shopimages';
 import TailorPortfolio from './components/TailorPortfolio';
+import ShopCards from './components/ShopCards';
+import ShopPortfolio from './components/ShopPortfolio';
 
 function App() {
   const location = useLocation();
@@ -38,6 +40,8 @@ function App() {
         <Route path="/Alldesigner" element={<AllDesigner />} />
         <Route path="/Roll" element={<Roll />} />
         <Route path="/vastrakosh" element={<VastraKosh />} />
+         {/* <Route path="/" element={<VastraKosh />} />y */}
+    <Route path="/explore-shops" element={<ShopCards />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/shopregistration" element={<ShopRegistration />} />
          <Route path="/tailorregistration" element={<TailorRegistration />} />
@@ -47,6 +51,9 @@ function App() {
                     <Route path="/vastrakosh" element={<VastraKosh/>} />
                   <Route path="/shopimages/:shopId" element={<Shopimages />} />
 <Route path="/tailor/:id" element={<TailorPortfolio/>} />
+ <Route path="/shop-cards" element={<ShopCards />} />
+ <Route path="/shop-images/:shopId" element={<ShopPortfolio />} />
+
           
 
              {/* 🔥 Just this added */}

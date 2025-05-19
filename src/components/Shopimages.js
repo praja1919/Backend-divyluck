@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import './Shopimages.css'; // Import the CSS file
+import { useParams, useNavigate } from 'react-router-dom'; // ADDED useNavigate
+import './Shopimages.css';
 
 const Shopimages = () => {
   const { shopId } = useParams();
+  const navigate = useNavigate(); // ADDED this line
   const [categories, setCategories] = useState([
     { categoryName: '', subtypes: [{ name: '', price: '', images: [] }] },
   ]);
 
+  // ALL YOUR EXISTING FUNCTIONS REMAIN EXACTLY THE SAME
   const handleAddCategory = () => {
     setCategories([
       ...categories,
@@ -40,6 +42,7 @@ const Shopimages = () => {
     setCategories(updated);
   };
 
+  // ONLY THIS FUNCTION HAS MINOR CHANGES FOR REDIRECT
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -73,12 +76,14 @@ const Shopimages = () => {
         formData
       );
       alert('✅ Categories added successfully!');
+      navigate('/shop-cards'); // CHANGED THIS LINE FOR REDIRECT
     } catch (err) {
       console.error('Error:', err.response?.data || err.message);
       alert(`❌ Failed to add categories: ${err.response?.data?.message || err.message}`);
     }
   };
 
+  // YOUR EXISTING RETURN/RENDER CODE REMAINS EXACTLY THE SAME
   return (
     <div className="shopimages-container">
       <h1 className="title">Add Fabric Categories</h1>
