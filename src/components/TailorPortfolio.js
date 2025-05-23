@@ -4,6 +4,7 @@ import axios from 'axios';
 import './TailorPortfolio.css';
 import im from '../components/assests/img.png'
 
+
 const TailorProfile = () => {
   const { id } = useParams();
   const location = useLocation();
@@ -34,8 +35,8 @@ const TailorProfile = () => {
 
     const fetchImages = async () => {
       try {
-        const imagesRes = await axios.get(`http://localhost:5000/api/images/${id}`);
-        setImages(imagesRes.data);
+        const res = await axios.get(`http://localhost:5000/api/images/${id}`);
+        setImages(res.data);
       } catch (error) {
         console.error('Error fetching images:', error);
       } finally {
@@ -56,158 +57,134 @@ const TailorProfile = () => {
     }, {});
   };
 
-  if (loading) return <p className="loading">Loading...</p>;
-  if (!tailorData) return <p className="loading">Tailor data not found.</p>;
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+        <p>Loading Portfolio...</p>
+      </div>
+    );
+  }
+
+  if (!tailorData) return <p className="error-message">Tailor data not found.</p>;
 
   const categorizedImages = groupByCategory(images);
   const categories = ['All', ...Object.keys(categorizedImages)];
   const filteredImages = activeCategory === 'All' ? images : categorizedImages[activeCategory] || [];
 
   return (
-    <div className="tailor-profile-container">
-      <div className="tailor-header">
-        <h2>{tailorData.name}'s Portfolio</h2>
-        <p><strong>City:</strong> {tailorData.city}</p>
-        <p><strong>Experience:</strong> {tailorData.experience}</p>
-        <p><strong>Specialty:</strong> {tailorData.specialty}</p>
-        <p><strong>Type:</strong> {tailorData.tailorType}</p>
-        <p><strong>Pricing:</strong> {tailorData.pricingModel}</p>
-      </div>
-
-      <div className="category-buttons">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={activeCategory === cat ? 'active' : ''}
-            onClick={() => setActiveCategory(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <div className="image-gallery">
-        {filteredImages.length > 0 ? (
-          filteredImages.map((img) => (
-            <div key={img._id} className="image-card">
-              <img src={`http://localhost:5000${img.imagePath}`} alt={img.caption} />
-              <p>{img.caption}</p>
+    <div className="portfolio-container">
+      {/* Split Hero Section */}
+      <header className="split-hero">
+        <div className="left-panel">
+          <h1 className="name-title">{tailorData.name.toUpperCase()}</h1>
+          <h2 className="portfolio-title">PROFILE</h2>
+          <div className="stats-grid">
+            <div className="stat-card black-card">
+              <span className="stat-number">{tailorData.experience}+</span>
+              <span className="stat-label">YEARS EXPERIENCE</span>
             </div>
-          ))
-        ) : (
-          <p className="no-images">No images available in this category.</p>
-        )}
-      </div>
-
-      <div className="portfolio-container">
-        {/* Split Hero Section */}
-        <header className="split-hero">
-          <div className="left-panel">
-            <h1 className="name-title">{tailorData.name.toUpperCase()}</h1>
-            <h2 className="portfolio-title">PROFILE</h2>
-            <div className="stats-grid">
-              <div className="stat-card black-card">
-                <span className="stat-number">{tailorData.experience}+</span>
-                <span className="stat-label">YEARS EXPERIENCE</span>
-              </div>
-              <div className="stat-card black-card">
-                <span className="stat-number">{images.length}+</span>
-                <span className="stat-label">CREATIONS</span>
-              </div>
+            <div className="stat-card black-card">
+              <span className="stat-number">{images.length}+</span>
+              <span className="stat-label">CREATIONS</span>
             </div>
           </div>
-          
-          <div className="right-panel">
-            <div className="quote-container">
-              <p className="inspirational-quote">"{currentQuote}"</p>
-              <div className="signature">— {tailorData.name.split(' ')[0]}</div>
-            </div>
-          </div>
-        </header>
-
-        {/* About Section */}
-        <section className="about-section">
-          <h2 className="section-title">ABOUT THE ARTIST</h2>
-          <div className="about-grid">
-            <div className="about-card glass-card">
-              <h3>SPECIALTY</h3>
-              <p>{tailorData.specialty}</p>
-            </div>
-            <div className="about-card glass-card">
-              <h3>STYLE</h3>
-              <p>{tailorData.tailorType}</p>
-            </div>
-            <div className="about-card glass-card">
-              <h3>LOCATION</h3>
-              <p>{tailorData.city}</p>
-            </div>
-            <div className="about-card glass-card">
-              <h3>PRICING</h3>
-              <p>{tailorData.pricingModel}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Feature Image Section */}
-        <section className="highlight-section">
-          <h2 className="section-title">TAILOR IN ACTION</h2>
-          <div className="highlight-image-container black-card">
-            <img
-              src={im} // Replace with your actual image path
-              alt="Tailor at work"
-              className="highlight-image"
-            />
-            <div className="highlight-overlay">
-              <p className="highlight-caption">Crafting excellence with every stitch.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Gallery Section */}
-        <section className="gallery-section">
-          <div className="section-header">
-            <h2 className="section-title">MASTERPIECES</h2>
-            <div className="category-filter">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  className={`category-btn ${activeCategory === cat ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(cat)}
-                >
-                  {cat.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {filteredImages.length > 0 ? (
-            <div className="masonry-gallery">
-              {filteredImages.map((img) => (
-                <div key={img._id} className="gallery-item black-card">
-                  <img 
-                    src={`http://localhost:5000${img.imagePath}`} 
-                    alt={img.caption} 
-                    className="gallery-image"
-                  />
-                  <div className="image-overlay">
-                    <p className="image-caption">{img.caption}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="empty-gallery">No creations in this category yet.</p>
-          )}
-        </section>
-
-        {/* Action Buttons Section */}
-        <div className="action-buttons-container">
-          <button className="action-button glass-button">Contact</button>
-          <button className="action-button black-button">Stitch with This Tailor</button>
         </div>
-      </div>
+        
+        <div className="right-panel">
+          <div className="quote-container">
+            <p className="inspirational-quote">"{currentQuote}"</p>
+            <div className="signature">— {tailorData.name.split(' ')[0]}</div>
+          </div>
+        </div>
+      </header>
+
+      {/* About Section */}
+   {/* About Section */}
+<section className="about-section">
+  <h2 className="section-title">ABOUT THE ARTIST</h2>
+  <div className="about-grid">
+    <div className="about-card glass-card">
+      <h3>SPECIALTY</h3>
+      <p>{tailorData.specialty}</p>
+    </div>
+    <div className="about-card glass-card">
+      <h3>STYLE</h3>
+      <p>{tailorData.tailorType}</p>
+    </div>
+    <div className="about-card glass-card">
+      <h3>LOCATION</h3>
+      <p>{tailorData.city}</p>
+    </div>
+    <div className="about-card glass-card">
+      <h3>PRICING</h3>
+      <p>{tailorData.pricingModel}</p>
+    </div>
+  </div>
+</section>
+
+         {/* Feature Image Section */}
+<section className="highlight-section">
+  <h2 className="section-title">TAILOR IN ACTION</h2>
+  <div className="highlight-image-container black-card">
+    <img
+      src={im} // Replace with your actual image path
+      alt="Tailor at work"
+      className="highlight-image"
+    />
+    <div className="highlight-overlay">
+      <p className="highlight-caption">Crafting excellence with every stitch.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+      {/* Gallery Section */}
+      <section className="gallery-section">
+        <div className="section-header">
+          <h2 className="section-title">MASTERPIECES</h2>
+          <div className="category-filter">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`category-btn ${activeCategory === cat ? 'active' : ''}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {filteredImages.length > 0 ? (
+          <div className="masonry-gallery">
+            {filteredImages.map((img) => (
+              <div key={img._id} className="gallery-item black-card">
+                <img 
+                  src={`http://localhost:5000${img.imagePath}`} 
+                  alt={img.caption} 
+                  className="gallery-image"
+                />
+                <div className="image-overlay">
+                  <p className="image-caption">{img.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="empty-gallery">No creations in this category yet.</p>
+        )}
+      </section>
+
+      {/* Action Buttons Section */}
+<div className="action-buttons-container">
+  <button className="action-button glass-button">Contact</button>
+  <button className="action-button black-button">Stitch with This Tailor</button>
+</div>
     </div>
   );
 };
 
-export default TailorProfile;
+export default TailorProfile; 

@@ -28,22 +28,37 @@ const ShopCards = () => {
   return (
     <div className="shop-cards-container">
       <h1 className="title">Fabric Shops</h1>
-      <div className="cards-grid">
-        {shops.map((shop) => (
-          <div key={shop._id} className="shop-card">
-            <div className="shop-info">
-              <h2>{shop.shopName}</h2>
-              <p><strong>Owner:</strong> {shop.owner}</p>
-              <p><strong>Email:</strong> {shop.email}</p>
-              <p><strong>Contact:</strong> {shop.contact}</p>
-              <p><strong>Location:</strong> {shop.location}</p>
-              
-              {shop.categories && shop.categories.length > 0 ? (
+      <div className="cards-wrapper">
+        {shops.map((shop, index) => (
+          <div
+            key={shop._id}
+            className={`shop-card ${index % 2 === 0 ? 'image-left' : 'image-right'}`}
+          >
+            <div className="image-container">
+              <img 
+                src={shop.shopImage || "/assests/shopimg.jpg"} 
+                alt={shop.shopName}
+                style={{
+                  maxHeight: '280px',
+                  objectPosition: 'center top'
+                }}
+              />
+            </div>
+            <div className="info-container">
+              <h2 className="shop-name">{shop.shopName}</h2>
+              <p className="shop-specialty">Party Wear</p>
+              <p className="shop-details">{shop.location}</p>
+              <p className="shop-details">{shop.contact}</p>
+              <p className="shop-experience">
+                {shop.experience || '20+'}+ years mastering the craft
+              </p>
+
+              {shop.categories && shop.categories.length > 0 && (
                 <div className="categories-section">
                   <h4>Fabric Categories:</h4>
                   <ul>
-                    {shop.categories.map((cat, index) => (
-                      <li key={index}>
+                    {shop.categories.map((cat, catIndex) => (
+                      <li key={catIndex}>
                         <strong>{cat.categoryName}</strong>
                         <ul>
                           {cat.subtypes.map((sub, subIndex) => (
@@ -59,16 +74,15 @@ const ShopCards = () => {
                     ))}
                   </ul>
                 </div>
-              ) : (
-                <p>No categories added yet</p>
               )}
+
+              <button
+                className="explore-btn"
+                onClick={() => navigate(`/shop-images/${shop._id}`)}
+              >
+                Discover Collection
+              </button>
             </div>
-            <button 
-              className="explore-btn"
-              onClick={() => navigate(`/shop-images/${shop._id}`)}
-            >
-              Explore Now
-            </button>
           </div>
         ))}
       </div>
